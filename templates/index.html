@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JiakiTranslate</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
+    color:white;
+    min-height:100vh;
+}
+
+/* NAVBAR */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 50px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#22d3ee;
+}
+
+.menu a{
+    color:white;
+    text-decoration:none;
+    margin-left:25px;
+    font-size:15px;
+    opacity:.85;
+}
+
+.menu a:hover{
+    color:#22d3ee;
+}
+
+/* HERO */
+.hero{
+    max-width:900px;
+    margin:auto;
+    text-align:center;
+    padding:70px 20px 30px;
+}
+
+.hero h1{
+    font-size:56px;
+    margin-bottom:15px;
+}
+
+.hero span{
+    color:#22d3ee;
+}
+
+.hero p{
+    font-size:20px;
+    color:#cbd5e1;
+    margin-bottom:40px;
+}
+
+/* CARD */
+.card{
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:30px;
+    max-width:700px;
+    margin:auto;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+/* INPUT */
+input{
+    width:100%;
+    padding:18px;
+    border:none;
+    outline:none;
+    border-radius:14px;
+    font-size:18px;
+    margin-bottom:15px;
+    background:#0f172a;
+    color:white;
+}
+
+button{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:14px;
+    background:#22d3ee;
+    color:#0f172a;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+}
+
+button:hover{
+    transform:scale(1.02);
+}
+
+/* RESULTADO */
+.resultado{
+    margin-top:25px;
+    font-size:24px;
+    color:#22d3ee;
+    font-weight:bold;
+}
+
+/* SUGERENCIAS */
+.resultados{
+    text-align:left;
+    margin-top:15px;
+}
+
+.item{
+    background:#1e293b;
+    padding:12px;
+    margin:8px 0;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.item:hover{
+    background:#334155;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:40px 20px;
+    color:#94a3b8;
+    font-size:14px;
+}
+html{
+    scroll-behavior:smooth;
+}
+
+.extra{
+    max-width:900px;
+    margin:80px auto;
+    padding:30px;
+    text-align:center;
+    background:rgba(255,255,255,.04);
+    border-radius:18px;
+}
+
+.extra h2{
+    font-size:32px;
+    margin-bottom:15px;
+    color:#22d3ee;
+}
+
+.extra p{
+    color:#cbd5e1;
+    font-size:18px;
+    line-height:1.6;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">JiakiTranslate</div>
+
+    <div class="menu">
+        <a href="#inicio">Inicio</a>
+        <a href="/login">Login</a>
+        <a href="/registro">Registro</a>
+        <a href="#diccionario">Diccionario</a>
+        <a href="#comunidad">Comunidad</a>
+        <a href="#acerca">Acerca</a>
+    </div>
+</nav>
+
+<!-- INICIO -->
+<section class="hero" id="inicio">
+
+<h1>Traduce con <span>JiakiTranslate</span></h1>
+
+<p>
+La plataforma digital para traducir Yaqui ↔ Español.
+Preserva la lengua y conecta culturas.
+</p>
+
+<div class="card">
+
+<form method="POST">
+
+<input
+type="text"
+name="palabra"
+id="busqueda"
+placeholder="Escribe una palabra..."
+onkeyup="buscar()"
+autocomplete="off"
+required>
+
+<button type="submit">Traducir</button>
+
+</form>
+
+<div class="resultados" id="resultados"></div>
+
+<div class="resultado">
+{{ resultado }}
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DICCIONARIO -->
+<section class="extra" id="diccionario">
+<h2>📚 Diccionario</h2>
+<p>
+Explora palabras Yaqui y Español en constante crecimiento.
+Próximamente lista completa y categorías.
+</p>
+</section>
+
+
+<!-- COMUNIDAD -->
+<section class="extra" id="comunidad">
+<h2>👥 Comunidad</h2>
+<p>
+Usuarios podrán sugerir nuevas palabras,
+corregir traducciones y aportar conocimiento.
+</p>
+</section>
+
+
+<!-- ACERCA -->
+<section class="extra" id="acerca">
+<h2>ℹ️ Acerca de</h2>
+<p>
+JiakiTranslate fue creado por Jesus Missael
+con el objetivo de apoyar la preservación digital
+de la lengua Yaqui mediante tecnología accesible.
+</p>
+</section>
+
+<footer>
+JiakiTranslate © 2026 • Desarrollado por Jesus Misael Rojo
+</footer>
+
+<script>
+function buscar(){
+
+let texto = document.getElementById("busqueda").value;
+
+if(texto.length == 0){
+document.getElementById("resultados").innerHTML = "";
+return;
+}
+
+fetch("/buscar?q=" + texto)
+
+.then(res => res.json())
+
+.then(data => {
+
+let contenedor = document.getElementById("resultados");
+contenedor.innerHTML = "";
+
+data.forEach(item => {
+
+let div = document.createElement("div");
+div.className = "item";
+div.innerText = item;
+
+div.onclick = function(){
+document.getElementById("busqueda").value = item.split(" -> ")[0];
+contenedor.innerHTML = "";
+}
+
+contenedor.appendChild(div);
+
+});
+
+});
+
+}
+</script>
+
+</body>
+</html>

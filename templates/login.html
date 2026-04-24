@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Login - JiakiTranslate</title>
+
+<style>
+body{
+background:#111827;
+font-family:Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+.card{
+background:#1f2937;
+padding:30px;
+border-radius:18px;
+width:350px;
+text-align:center;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:8px 0;
+border:none;
+border-radius:10px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#22d3ee;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+}
+
+a{
+color:#22d3ee;
+text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+<h2>Iniciar Sesion</h2>
+
+<form method="POST">
+<input type="text" name="usuario" placeholder="Usuario" required>
+<input type="password" name="password" placeholder="Contrasena" required>
+<button type="submit">Entrar</button>
+</form>
+
+<br>
+<a href="/registro">Crear cuenta</a>
+</div>
+
+</body>
+</html>
