@@ -158,7 +158,53 @@ def logout():
     session.clear()
     return redirect("/")
 
+#@app.route("/agregar", methods=["POST"])
+#def agregar():
+    if "usuario" not in session:
+        return redirect("/login")
 
+    esp = request.form["esp"].lower().strip()
+    yaqui = request.form["yaqui"].lower().strip()
+
+    pendientes = cargar_json(pendientes)
+
+    #  todo va a revisión SIEMPRE
+    pendientes[esp] = {
+        "yaqui": yaqui,
+        "usuario": session["usuario"]
+    }
+
+    with open(pendientes, "w", encoding="utf-8") as f:
+        json.dump(pendientes, f, indent=4, ensure_ascii=False)
+
+    return "Enviado a revisión del administrador"
+#@app.route("/admin")
+#def admin():
+    if session.get("usuario") != "admin":
+        return "No autorizado"
+
+    pendientes = cargar_json(pendientes)
+    return pendientes
+
+#@app.route("/admin/aceptar/<esp>")
+#def aceptar(esp):
+    if session.get("usuario") != "admin":
+        return "No autorizado"
+
+    diccionario = cargar_json(PALABRAS)
+    pendientes = cargar_json(pendientes)
+
+    if esp in pendientes:
+        diccionario[esp] = pendientes[esp]["yaqui"]
+        del pendientes[esp]
+
+        with open(PALABRAS, "w", encoding="utf-8") as f:
+            json.dump(diccionario, f, indent=4, ensure_ascii=False)
+
+        with open(pendientes, "w", encoding="utf-8") as f:
+            json.dump(pendientes, f, indent=4, ensure_ascii=False)
+
+    return redirect("/admin")
 # ----------------------------
 # RUN
 # ----------------------------
