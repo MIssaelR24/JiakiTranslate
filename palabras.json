@@ -14,7 +14,8 @@
     "abanico": "baijektareo",
     "ellos": "amechi, ujbwana",
     "abarcar": "bwise, nu’e",
-    "esa": "juna, junae, junu’u, espuela: ijpuelam, pemwicham",
+    "esa": "juna, junae, junu’u", 
+    "espuela": "ijpuelam, pemwicham",
     "abarrancar": "siba jooa, sibate",
     "ese": "juna’a",
     "abarrotar": "sisi’iwokitua",
@@ -1214,7 +1215,8 @@
     "concierto": "bwik’elauwame",
     "componer": "tu’ute",
     "concluir": "ansu, chupa",
-    "comportamiento": "eiyari, jaisa conclusión: ansui, ansuwame,",
+    "comportamiento": "eiyari, jaisa", 
+    "conclusión": "ansui, ansuwame,",
     "concordancia": "nau weye",
     "composición": "joo’ota, welimai",
     "concordia": "nau ala’eewame",
@@ -3451,7 +3453,8 @@
     "mandíbula": "tabawasa’i",
     "malignidad": "bebeje’e, bebeje’eria",
     "mando": "nesawi, nesawia",
-    "maligno": "bebeje’eri, kaa yo’oreme, manejar: yeeka",
+    "maligno": "bebeje’eri, kaa yo’oreme", 
+    "manejar": "yeeka",
     "malla": "jite’i",
     "mallugado": "bwalgotte, bwaltawala, manejo: yekalwame, yekane",
     "mallugar": "bwalkote, bwaltawaa",
@@ -5689,5 +5692,5 @@
     "zorro": "kawis",
     "dificil": "oviachi",
     "si": "ewi",
-    "no": "e´e"
+    "no": "e’e"
 }
