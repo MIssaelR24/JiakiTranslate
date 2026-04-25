@@ -32,7 +32,7 @@ def cargar_json(ruta):
         return {}
 
 
-diccionario = cargar_json(PALABRAS)
+##diccionario = cargar_json(PALABRAS)
 
 
 # ----------------------------
@@ -41,6 +41,7 @@ diccionario = cargar_json(PALABRAS)
 def buscar_inteligente(texto):
     texto = texto.lower().strip()
     resultados = []
+    diccionario = cargar_json(PALABRAS)
 
     if not texto:
         return []
@@ -72,6 +73,7 @@ def buscar_inteligente(texto):
 @app.route("/", methods=["GET", "POST"])
 def index():
     resultado = ""
+    diccionario = cargar_json(PALABRAS)
 
     if request.method == "POST":
         palabra = request.form["palabra"].lower().strip()
